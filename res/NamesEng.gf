@@ -1,10 +1,12 @@
 concrete NamesEng of Names = CatEng ** open Prelude, ResEng in {
 
+{-
 lincat LN = {s  : Case => Str;
              p  : Str;   -- preposition "in Scandinavia", "on the Balkans"
              art : Bool; -- plain name "United States" vs "the United States"
              a  : Agr;
             } ;
+-}
 
 lin UseLN n = {
       s = \\c => case n.art of {
