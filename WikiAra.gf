@@ -1,5 +1,7 @@
-abstract Wiki =
-  Grammar [
+--# -path=.:../gf-wordnet
+
+concrete WikiAra of Wiki =
+  GrammarAra [
   Phr, Utt, Pol, ListNP, Adv, Comp, VPSlash, Tense, Card, Cl, Voc, AP,
   Num, S, Conj, Det, NP, Temp, Ant, Quant, Dig, CN, Digits, VP, PConj, Pron,
   Prep, A, V2, N, PN, ListS, AdV, ListAdv, DAP, Decimal, RP, Ord, RCl, RS,
@@ -113,21 +115,19 @@ abstract Wiki =
   to_2_Prep,
   very_AdA,
   with_Prep
-  ],
-Extend [
+],
+ExtendAra [
   N, VP, VPSlash,
   CompoundN,
   PassVPSlash
   ],
-Words
+-- MiniAra
+WordsAra **
+open
+  ParadigmsAra, Prelude in {
+lincat Mark = {s : Str} ;
 
-  ** {
-flags startcat = Phr ;
-
--- from gf-wordnet/Parse.gf
-cat Mark ;
-
-fun PhrUttMark : PConj -> Utt -> Voc -> Mark -> Phr ;
-fun FullStop : Mark ;
+lin PhrUttMark pconj utt voc mark = {s = pconj.s ++ utt.s ! masc ++ voc.s ++ SOFT_BIND ++ mark.s} ;
+lin FullStop  = {s = "."} ;
 
 }
